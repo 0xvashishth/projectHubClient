@@ -30,7 +30,7 @@ export default function ProjectDetail(props) {
           <h6 class="card-subtitle text-muted">Created By: {res.data.creator}</h6>
         </div>
         <div className="rounded mx-auto d-block p-2 border">
-        <img width="100vh" src="https://avatars.githubusercontent.com/u/76911582?s=400&u=e5b8cd698ee7fb315ac23049a56bb03ac4149f86&v=4" />
+        <img width="100vh" src="https://user-images.githubusercontent.com/76911582/196771457-2c0b15c0-bb27-4f73-a1b6-2120f2dfbca4.png" />
         </div>
         <div class="card-body">
         <ReactMarkdown children={res.data.description}/>

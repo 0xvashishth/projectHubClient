@@ -37,7 +37,7 @@ export default function HomePageProject(props) {
           <h5 class="card-title">{res.data[i].name}</h5>
           <h6 class="card-subtitle text-muted">Created By: {res.data[i].creator}</h6>
         </div>
-        <img src="https://avatars.githubusercontent.com/u/76911582?s=400&u=e5b8cd698ee7fb315ac23049a56bb03ac4149f86&v=4" />
+        <img src="https://user-images.githubusercontent.com/76911582/196771457-2c0b15c0-bb27-4f73-a1b6-2120f2dfbca4.png" />
         <div class="card-body">
         {/* <ReactMarkdown children={}/> */}
         <TextTruncate line={2} text={res.data[i].description} className="card-text" />

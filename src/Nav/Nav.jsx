@@ -15,7 +15,7 @@ export default function Nav() {
               <a class="nav-link" href="/projects">Top Projects</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#topUsers">Top Users</a>
+              <a class="nav-link" href="/users">Top Users</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">More</a>

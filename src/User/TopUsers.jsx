@@ -4,48 +4,48 @@ import React, { useState, useEffect } from "react";
 import TextTruncate from 'react-text-truncate';
 // import ReactMarkdown from 'react-markdown'
 import Loader from '../Loader'
+import UserCard from "./UserCard"
 
-export default function HomePageProject(props) {
+export default function TopUsers(props) {
   const [responses, setResponses] = useState();
   const [loader, setloader] = useState(<div className="d-flex justify-content-center pb-3"><Loader></Loader></div>);
 
-  var sampleproject = [];
+  var sampleusers = [];
 
   async function getSampleProject() {
-    await axios.get('/api/Projects', {
+    await axios.get('/api/Users', {
       headers: {
         'Content-Type': 'application/json'
      }
     }).then((res) => {
       for (let i = 0; i < res.data.length; i++) {
         var hreflink = "/project/"+res.data[i].id
-        sampleproject[i] = 
-        <div className='col'>
-        <a className='linknoeffect' href={hreflink}>
+        var props = res.data[i]
+        sampleusers[i] = <div className='col'>
         <div class='card mb-3'>
-        <h3 class="card-header">Project: {res.data[i].id}</h3>
+        <h3 class="card-header">{props.name}</h3>
         <div class="card-body">
-          <h5 class="card-title">{res.data[i].name}</h5>
-          <h6 class="card-subtitle text-muted">Created By: {res.data[i].creator}</h6>
+          <h6 class="card-subtitle text-muted">Email: {props.email}</h6>
         </div>
-        <img src="https://user-images.githubusercontent.com/76911582/196771457-2c0b15c0-bb27-4f73-a1b6-2120f2dfbca4.png" />
+        <img src="https://avatars.githubusercontent.com/u/76911582?s=400&u=e5b8cd698ee7fb315ac23049a56bb03ac4149f86&v=4" />
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Twitter: {props.twitter}</li>
+          <li class="list-group-item">Linkedin: {props.linkedin}</li>
+          <li class="list-group-item">Github: {props.github}</li>
+        </ul>
         <div class="card-body">
-        {/* <ReactMarkdown children={}/> */}
-        <TextTruncate line={2} text={res.data[i].description} className="card-text" />
-        </div>
-        <div class="card-body">
-          <a href="#like" class="card-link">Like</a>
-          <a href="#report" class="card-link">Report</a>
+          <a href="#like" class="card-link">Like User</a>
+          <a href="#report" class="card-link">Report User</a>
         </div>
         <div class="card-footer text-muted">
-          Likes: {res.data[i].likes}
+          Points: {props.points}
         </div>
       </div>
-      </a>
       </div>
       }
-      setResponses(sampleproject);
+      setResponses(sampleusers);
       console.log(res.data)
+      console.log(responses);
       setloader();
     });
   }
@@ -60,7 +60,7 @@ export default function HomePageProject(props) {
         <div class="border p-3 mt-5" style={{ borderRadius: "18px" }}>
           <h2 class="row pb-2">
             <div class="pb-2 d-flex justify-content-around">
-              <h2 class="">All Projects !</h2>
+              <h2 class="">Top Users !</h2>
             </div>
             <hr />
           </h2>
