@@ -2,6 +2,7 @@ import axios from '../axios'
 import React, { useState, useEffect } from "react";
 import TextTruncate from 'react-text-truncate';
 import "../App.css"
+import Nav from "../Nav/Nav"
 // import ReactMarkdown from 'react-markdown'
 import Loader from '../Loader'
 
@@ -37,7 +38,9 @@ export default function HomePageProject(props) {
           <h5 class="card-title">{res.data[i].name}</h5>
           <h6 class="card-subtitle text-muted">Created By: {res.data[i].creator}</h6>
         </div>
-        <img src="https://user-images.githubusercontent.com/76911582/196771457-2c0b15c0-bb27-4f73-a1b6-2120f2dfbca4.png" />
+        <div className="rounded mx-auto d-block p-2 border">
+        <img width="100vh" src="https://user-images.githubusercontent.com/76911582/196771457-2c0b15c0-bb27-4f73-a1b6-2120f2dfbca4.png" />
+        </div>
         <div class="card-body">
         {/* <ReactMarkdown children={}/> */}
         <TextTruncate line={2} text={res.data[i].description} className="card-text" />
@@ -75,12 +78,13 @@ export default function HomePageProject(props) {
         topuserslist[i] = 
         <div className='col'>
         <div class='card mb-3'>
-        <h3 class="card-header">Project: {res.data[i].id}</h3>
+        <h3 class="card-header">{res.data[i].name}</h3>
         <div class="card-body">
-          <h5 class="card-title">{res.data[i].name}</h5>
           <h6 class="card-subtitle text-muted">Email: {res.data[i].email}</h6>
         </div>
-        <img src="https://avatars.githubusercontent.com/u/76911582?s=400&u=e5b8cd698ee7fb315ac23049a56bb03ac4149f86&v=4" />
+        <div className="rounded mx-auto d-block p-2 border">
+        <img width="100vh" src="https://user-images.githubusercontent.com/76911582/196771457-2c0b15c0-bb27-4f73-a1b6-2120f2dfbca4.png" />
+        </div>        
         <ul class="list-group list-group-flush">
           <li class="list-group-item">Twitter: {res.data[i].twitter}</li>
           <li class="list-group-item">Linkedin: {res.data[i].linkedin}</li>
@@ -109,6 +113,7 @@ export default function HomePageProject(props) {
 
   return (
     <>
+    <Nav />
       <div class="p-1">
         <div class="border p-3 mt-5" style={{ borderRadius: "18px" }}>
           <h2 class="row pb-2">

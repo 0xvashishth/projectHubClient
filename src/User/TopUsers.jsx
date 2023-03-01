@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import TextTruncate from 'react-text-truncate';
 // import ReactMarkdown from 'react-markdown'
 import Loader from '../Loader'
+import Nav from "../Nav/Nav"
 import UserCard from "./UserCard"
 
 export default function TopUsers(props) {
@@ -27,7 +28,9 @@ export default function TopUsers(props) {
         <div class="card-body">
           <h6 class="card-subtitle text-muted">Email: {props.email}</h6>
         </div>
-        <img src="https://avatars.githubusercontent.com/u/76911582?s=400&u=e5b8cd698ee7fb315ac23049a56bb03ac4149f86&v=4" />
+        <div className="rounded mx-auto d-block p-2 border">
+        <img width="100vh" src="https://user-images.githubusercontent.com/76911582/196771457-2c0b15c0-bb27-4f73-a1b6-2120f2dfbca4.png" />
+        </div> 
         <ul class="list-group list-group-flush">
           <li class="list-group-item">Twitter: {props.twitter}</li>
           <li class="list-group-item">Linkedin: {props.linkedin}</li>
@@ -56,6 +59,7 @@ export default function TopUsers(props) {
 
   return (
     <>
+    <Nav/>
       <div class="p-1">
         <div class="border p-3 mt-5" style={{ borderRadius: "18px" }}>
           <h2 class="row pb-2">

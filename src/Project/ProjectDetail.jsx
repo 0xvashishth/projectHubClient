@@ -2,6 +2,7 @@ import axios from '../axios'
 import React, { useState, useEffect } from "react";
 import ReactMarkdown from 'react-markdown'
 import Loader from '../Loader'
+import Nav from "../Nav/Nav"
 import {
     useParams,
   } from "react-router-dom";
@@ -59,6 +60,7 @@ export default function ProjectDetail(props) {
 
   return (
     <>
+    <Nav/>
       <div class="p-1">
         {loader}
         {response}

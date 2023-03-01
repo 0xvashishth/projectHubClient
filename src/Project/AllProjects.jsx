@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import TextTruncate from 'react-text-truncate';
 // import ReactMarkdown from 'react-markdown'
 import Loader from '../Loader'
+import Nav from "../Nav/Nav"
 
 export default function HomePageProject(props) {
   const [responses, setResponses] = useState();
@@ -28,7 +29,9 @@ export default function HomePageProject(props) {
           <h5 class="card-title">{res.data[i].name}</h5>
           <h6 class="card-subtitle text-muted">Created By: {res.data[i].creator}</h6>
         </div>
-        <img src="https://user-images.githubusercontent.com/76911582/196771457-2c0b15c0-bb27-4f73-a1b6-2120f2dfbca4.png" />
+        <div className="rounded mx-auto d-block p-2 border">
+        <img width="100vh" src="https://user-images.githubusercontent.com/76911582/196771457-2c0b15c0-bb27-4f73-a1b6-2120f2dfbca4.png" />
+        </div>
         <div class="card-body">
         {/* <ReactMarkdown children={}/> */}
         <TextTruncate line={2} text={res.data[i].description} className="card-text" />
@@ -56,6 +59,7 @@ export default function HomePageProject(props) {
 
   return (
     <>
+      <Nav/>
       <div class="p-1">
         <div class="border p-3 mt-5" style={{ borderRadius: "18px" }}>
           <h2 class="row pb-2">

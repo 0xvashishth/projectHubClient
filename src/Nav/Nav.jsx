@@ -1,4 +1,17 @@
-export default function Nav() {
+import {setStorageLogin,removeStorageLogin, checkUser} from "../checkStorage"
+
+export default function Nav(props) {
+  var checkhello;
+  if(checkUser()){
+    checkhello = true;
+  }else{
+    checkhello = false;
+  }
+  function LogoutClick(){
+    removeStorageLogin();
+    window.location.reload(true);
+  }
+
   return (
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
@@ -29,9 +42,11 @@ export default function Nav() {
             </li>
           </ul>
           <form class="d-flex">
-            <input class="form-control me-sm-2" type="search" placeholder="Search" spellcheck="false" data-ms-editor="true" />
-            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+            <input class="form-control me-sm-2" type="search" placeholder="Search" spellCheck="false" data-ms-editor="true" />
           </form>
+          {
+            checkhello ? <a onClick={LogoutClick} className="btn btn-danger">Logout</a> : <a href="/login" className="btn btn-primary">Login</a>
+          }
         </div>
       </div>
     </nav>
