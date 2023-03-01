@@ -1,4 +1,5 @@
-import axios from 'axios'
+import axios from '../axios'
+import "../App.css"
 import React, { useState, useEffect } from "react";
 import TextTruncate from 'react-text-truncate';
 // import ReactMarkdown from 'react-markdown'
@@ -11,14 +12,16 @@ export default function HomePageProject(props) {
   var sampleproject = [];
 
   async function getSampleProject() {
-    await axios.get('https://localhost:7064/api/Projects', {
+    await axios.get('/api/Projects', {
       headers: {
         'Content-Type': 'application/json'
      }
     }).then((res) => {
       for (let i = 0; i < res.data.length; i++) {
+        var hreflink = "/project/"+res.data[i].id
         sampleproject[i] = 
         <div className='col'>
+        <a className='linknoeffect' href={hreflink}>
         <div class='card mb-3'>
         <h3 class="card-header">Project: {res.data[i].id}</h3>
         <div class="card-body">
@@ -38,6 +41,7 @@ export default function HomePageProject(props) {
           Likes: {res.data[i].likes}
         </div>
       </div>
+      </a>
       </div>
       }
       setResponses(sampleproject);

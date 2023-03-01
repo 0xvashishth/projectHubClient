@@ -9,10 +9,10 @@ export default function Nav() {
         <div class="collapse navbar-collapse" id="navbarColor02">
           <ul class="navbar-nav me-auto">
             <li class="nav-item">
-              <a class="nav-link" href="#projList">Project List</a>
+              <a class="nav-link" href="/projects">Project List</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#topProjects">Top Projects</a>
+              <a class="nav-link" href="/projects">Top Projects</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#topUsers">Top Users</a>

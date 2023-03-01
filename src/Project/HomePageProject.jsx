@@ -1,6 +1,7 @@
-import axios from 'axios'
+import axios from '../axios'
 import React, { useState, useEffect } from "react";
 import TextTruncate from 'react-text-truncate';
+import "../App.css"
 // import ReactMarkdown from 'react-markdown'
 import Loader from '../Loader'
 
@@ -14,7 +15,7 @@ export default function HomePageProject(props) {
   var topuserslist = [];
 
   async function getSampleProject() {
-    await axios.get('https://localhost:7064/api/Projects', {
+    await axios.get('/api/Projects', {
       headers: {
         'Content-Type': 'application/json'
      }
@@ -26,8 +27,10 @@ export default function HomePageProject(props) {
         len = 4;
       }
       for (let i = 0; i < len; i++) {
+        var hreflink = "/project/"+res.data[i].id
         sampleproject[i] = 
         <div className='col'>
+          <a href={hreflink} className='linknoeffect'>
         <div class='card mb-3'>
         <h3 class="card-header">Project: {res.data[i].id}</h3>
         <div class="card-body">
@@ -47,6 +50,7 @@ export default function HomePageProject(props) {
           Likes: {res.data[i].likes}
         </div>
       </div>
+      </a>
       </div>
       }
       setResponses(sampleproject);
@@ -56,7 +60,7 @@ export default function HomePageProject(props) {
   }
 
   async function getTopUsers() {
-    await axios.get('https://localhost:7064/api/Users', {
+    await axios.get('/api/Users', {
       headers: {
         'Content-Type': 'application/json'
      }

@@ -3,3 +3,7 @@ main {
   vertical-align: center;
   line-height: 100vh
 }
+
+.linknoeffect{
+  text-decoration: none;
+}
