@@ -31,3 +31,18 @@ export function checkSignup(){
     isLoggedin();
   }, []);
 }
+
+export function checkCreate(){
+  const navigate = useNavigate();
+  // removeStorageLogin();
+  function isLoggedin(){
+      if(checkUser()){
+        console.log("LoggedIn..!")
+      }else{
+        navigate("/login")
+      }
+  }
+  useEffect(() => {
+    isLoggedin();
+  }, []);
+}

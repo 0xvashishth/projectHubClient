@@ -18,13 +18,25 @@ export const Signup = async (email, password, github, name, twitter, linkedin) =
   return response;
 };
 
-export const PinSubmit = async (email, pin) => {
-  var response;
+export const ProjectSubmit = async (name, description, ytlink, imagesurls, visibility) => {
+  var response
+  var id = 0;
+  var creator = localStorage.getItem("id");
+  var apiLink = "/api/Projects?creatorId="+creator
+  var token = localStorage.getItem("token")
+  var tokenbearer = "bearer " + token
+  let axiosConfig = {
+    headers: {
+        'Content-Type': 'application/json',
+        "accept": "text/plain",
+        "Authorization": tokenbearer,
+        "Access-Control-Allow-Origin": "*",
+    }
+  };
   await axios
-    .post("http://localhost:8082/api/v1/verify", {
-      pin,
-      email,
-    })
+    .post(apiLink, {
+      id,name, description, ytlink, imagesurls, creator, visibility
+    }, axiosConfig)
     .then((res) => {
       response = res;
     })

@@ -9,6 +9,7 @@ import ErrorPage from "./Error/ErrorPage";
 import TopUsers from "./User/TopUsers"
 import LoginScreen from "./Auth/Login";
 import SignupScreen from "./Auth/Signup"
+import CreateProject from "./Project/CreateProject";
   
   const router = createBrowserRouter([
     {
@@ -34,6 +35,10 @@ import SignupScreen from "./Auth/Signup"
     {
       path: "/signup",
       element: <SignupScreen/>
+    },
+    {
+      path: "/project/create",
+      element: <CreateProject/>
     },
     {
       errorElement: <ErrorPage />

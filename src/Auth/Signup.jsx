@@ -3,7 +3,7 @@ import {setStorageLogin,removeStorageLogin, checkUser} from "../checkStorage"
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import {checkLogin, checkSignup} from "./AuthChecking";
-import { Signup, PinSubmit } from "./API";
+import { Signup } from "./API";
 
 export default function SignupScreen(props){
   checkSignup();

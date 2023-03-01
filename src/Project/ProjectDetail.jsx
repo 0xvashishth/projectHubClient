@@ -25,22 +25,24 @@ export default function ProjectDetail(props) {
         sampleproject = 
         <div class="border p-3 mt-5" style={{ borderRadius: "18px" }}>
         <div className='d-flex justify-content-around'>
-        <div class='card text-center mb-3'>
-        <h3 class="card-header">{res.data.name}</h3>
+        <div class='card mb-3'>
+        <h3 class="text-center card-header">{res.data.name}</h3>
         <div class="card-body">
-          <h6 class="card-subtitle text-muted">Created By: {res.data.creator}</h6>
+          <h6 class="text-center card-subtitle text-muted">Created By: {res.data.creator}</h6>
         </div>
-        <div className="rounded mx-auto d-block p-2 border">
+        <div className="text-center rounded mx-auto d-block p-2 border">
         <img width="100vh" src="https://user-images.githubusercontent.com/76911582/196771457-2c0b15c0-bb27-4f73-a1b6-2120f2dfbca4.png" />
         </div>
+        <hr/>
         <div class="card-body">
         <ReactMarkdown children={res.data.description}/>
         </div>
-        <div class="card-body">
+        <hr/>
+        <div class="text-center card-body">
           <a href="#like" class="card-link">Like</a>
           <a href="#report" class="card-link">Report</a>
         </div>
-        <div class="card-footer text-muted">
+        <div class="text-center card-footer text-muted">
           <b>Likes:</b> {res.data.likes}
           &nbsp;&nbsp;
             <b>Project Id:</b> {res.data.id}

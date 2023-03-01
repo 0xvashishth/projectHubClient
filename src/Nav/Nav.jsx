@@ -11,6 +11,9 @@ export default function Nav(props) {
     removeStorageLogin();
     window.location.reload(true);
   }
+  function createProjectClick(){
+    window.location.replace("/project/create")
+  }
 
   return (
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -41,9 +44,11 @@ export default function Nav(props) {
               </div>
             </li>
           </ul>
-          <form class="d-flex">
-            <input class="form-control me-sm-2" type="search" placeholder="Search" spellCheck="false" data-ms-editor="true" />
-          </form>
+          {
+            checkhello ? <a onClick={createProjectClick} className="btn btn-secondary">Create Project</a> : "Login To Create Project"
+          }
+          &nbsp;
+          &nbsp;
           {
             checkhello ? <a onClick={LogoutClick} className="btn btn-danger">Logout</a> : <a href="/login" className="btn btn-primary">Login</a>
           }
