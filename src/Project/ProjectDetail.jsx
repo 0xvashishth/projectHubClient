@@ -4,6 +4,7 @@ import ReactMarkdown from "react-markdown";
 import Loader from "../Loader";
 import Nav from "../Nav/Nav";
 import { useParams } from "react-router-dom";
+import { ProjectEdit } from "../Auth/API";
 
 export default function ProjectDetail(props) {
   const [response, setResponse] = useState("");
@@ -13,17 +14,9 @@ export default function ProjectDetail(props) {
   const [ytlink, setytlink] = useState("");
   const [visibility, setvisibility] = useState("");
 
-  // const { description, imagesurls, name, ytlink, visibility } = values;
+  const [modalMsg, setModalMsg] = useState("");
 
-  const handleChange = (name) => (event) => {
-    console.log(name)
-    const value = event.target.value;
-    if(name == "name") setname(value)
-    else if(name == "description") setdescription(value)
-    else if(name == "ytlink") setytlink(value)
-    else if(name == "visibility") setvisibility(value)
-    else if(name == "imagesurls") setimagesurls(value)
-  };
+  // const { description, imagesurls, name, ytlink, visibility } = values;
 
   const [loader, setloader] = useState(
     <div className="d-flex justify-content-center pb-3">
@@ -33,16 +26,17 @@ export default function ProjectDetail(props) {
   const [editButton, setEditButton] = useState("");
 
   let { id } = useParams();
-  console.log(id);
+  // console.log(id);
 
   var sampleproject = [];
 
-  function settingUpValues(res){
-    setimagesurls(res.imagesurls)
-    setvisibility(res.visibility)
-    setytlink(res.ytlink)
-    setdescription(res.description)
-    setname(res.name)
+  function settingUpValues(res) {
+    localStorage.setItem("projid", res.id)
+    setimagesurls(res.imagesurls);
+    setvisibility(res.visibility);
+    setytlink(res.ytlink);
+    setdescription(res.description);
+    setname(res.name);
   }
 
   function creteProjectCard(res) {
@@ -112,8 +106,9 @@ export default function ProjectDetail(props) {
           );
         }
         sampleproject = creteProjectCard(res.data);
+        // setprojid(res.data.id);
         setResponse(sampleproject);
-        settingUpValues(res.data)
+        settingUpValues(res.data);
         setloader();
       });
   }
@@ -121,6 +116,69 @@ export default function ProjectDetail(props) {
   useEffect(() => {
     getSampleProject();
   }, []);
+
+  const handleChange = (name) => (event) => {
+    // console.log(imagesurls)
+    const value = event.target.value;
+    if (name == "name"){ localStorage.setItem("projname", value); setname(value);}
+    else if (name == "description") { localStorage.setItem("projdescription", value);  setdescription(value);}
+    else if (name == "ytlink") { localStorage.setItem("projytlink", value); setytlink(value);}
+    else if (name == "visibility") { localStorage.setItem("projvisibility", value); setvisibility(value);}
+    else if (name == "imagesurls") { localStorage.setItem("projimagesurls", value); setimagesurls(value);}
+  };
+
+  const handleSubmit = (event) => {
+    // console.log(name)
+    event.preventDefault();
+    setModalBtton(
+      <button class="btn btn-primary" type="button" disabled>
+        <span
+          class="spinner-border spinner-border-sm"
+          role="status"
+          aria-hidden="true"
+        ></span>
+        Please wait...
+      </button>
+    );
+    var projid = localStorage.getItem("projid")
+    var description = localStorage.getItem("projdescription")
+    var name = localStorage.getItem("projname")
+    var ytlink = localStorage.getItem("projytlink")
+    var visibility = localStorage.getItem("projvisibility")
+    var imagesurls = localStorage.getItem("projimagesurls")
+    if (!description || !name || !ytlink || !imagesurls || !visibility) {
+      console.log(projid, description, name, ytlink, imagesurls, visibility)
+      setModalMsg("All fields Are Required");
+    } else {
+      setModalMsg("");
+      ProjectEdit(projid, name, description, ytlink, imagesurls, visibility)
+        .then((res) => {
+          if (res.status !== 200) {
+            setModalMsg(res.data);
+            var projData = {
+              name, description, ytlink, imagesurls, visibility, id: projid
+            };
+            sampleproject = creteProjectCard(projData);
+            setResponse(sampleproject);
+          } else {
+            setModalMsg(res.data);
+          }
+        })
+        .catch((err) => console.log(err));
+    }
+    setModalBtton(
+      <button type="button" className="btn btn-primary" onClick={handleSubmit}>
+        Submit
+      </button>
+    );
+  };
+  
+  const [modalBtton, setModalBtton] = useState(
+    <button type="button" className="btn btn-primary" onClick={handleSubmit}>
+      Submit
+    </button>
+  );
+
 
   return (
     <>
@@ -229,10 +287,9 @@ export default function ProjectDetail(props) {
                 >
                   Close
                 </button>
-                <button type="button" className="btn btn-primary">
-                  Send message
-                </button>
+                {modalBtton}
               </div>
+              <div className="m-2">{modalMsg}</div>
             </div>
           </div>
         </div>
