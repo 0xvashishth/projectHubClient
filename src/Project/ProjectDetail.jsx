@@ -4,9 +4,11 @@ import ReactMarkdown from "react-markdown";
 import Loader from "../Loader";
 import Nav from "../Nav/Nav";
 import { useParams } from "react-router-dom";
-import { ProjectEdit } from "../Auth/API";
+import { ProjectEdit, ProjectDelete } from "../Auth/API";
+import { useNavigate } from "react-router-dom";
 
 export default function ProjectDetail(props) {
+  const navigate = useNavigate();
   const [response, setResponse] = useState("");
   const [description, setdescription] = useState("");
   const [imagesurls, setimagesurls] = useState("");
@@ -24,6 +26,7 @@ export default function ProjectDetail(props) {
     </div>
   );
   const [editButton, setEditButton] = useState("");
+  const [deleteButton, setDeleteButton] = useState("");
 
   let { id } = useParams();
   // console.log(id);
@@ -31,7 +34,8 @@ export default function ProjectDetail(props) {
   var sampleproject = [];
 
   function settingUpValues(res) {
-    localStorage.setItem("projid", res.id)
+    localStorage.setItem("projid", res.id);
+    localStorage.setItem("projowner", res.creator);
     setimagesurls(res.imagesurls);
     setvisibility(res.visibility);
     setytlink(res.ytlink);
@@ -85,6 +89,41 @@ export default function ProjectDetail(props) {
     );
   }
 
+  function deleteProject() {
+    console.log("Inside deleting")
+    setDeleteButton(<button class="btn btn-danger m-auto" type="button" disabled>
+    <span
+      class="spinner-border spinner-border-sm"
+      role="status"
+      aria-hidden="true"
+    ></span>
+    Deleting...
+  </button>);
+  console.log("Inside the button modal")
+    if (window.confirm("Please Confirm if you want to delete your project")) {
+      var projid = localStorage.getItem("projid");
+      var projowner = localStorage.getItem("projowner");
+      ProjectDelete(projid, projowner)
+        .then((res) => {
+          if (res.status !== 204) {
+          } else {
+            setDeleteButton(
+              <button className="btn btn-danger m-auto">
+                Project Deleted
+              </button>
+            );
+            navigate("/projects");
+          }
+        })
+        .catch((err) => console.log(err));
+    }
+    setDeleteButton(
+      <button className="btn btn-danger m-auto" onClick={deleteProject}>
+        Delete Project
+      </button>
+    );
+  }
+
   async function getSampleProject() {
     await axios
       .get("/api/Projects/" + id, {
@@ -97,11 +136,16 @@ export default function ProjectDetail(props) {
           console.log("This is owner");
           setEditButton(
             <button
-              className="btn btn-secondary"
+              className="btn btn-primary m-auto"
               data-bs-toggle="modal"
               data-bs-target="#exampleModal"
             >
               Edit Project
+            </button>
+          );
+          setDeleteButton(
+            <button className="btn btn-danger m-auto" onClick={deleteProject}>
+              Delete Project
             </button>
           );
         }
@@ -120,11 +164,22 @@ export default function ProjectDetail(props) {
   const handleChange = (name) => (event) => {
     // console.log(imagesurls)
     const value = event.target.value;
-    if (name == "name"){ localStorage.setItem("projname", value); setname(value);}
-    else if (name == "description") { localStorage.setItem("projdescription", value);  setdescription(value);}
-    else if (name == "ytlink") { localStorage.setItem("projytlink", value); setytlink(value);}
-    else if (name == "visibility") { localStorage.setItem("projvisibility", value); setvisibility(value);}
-    else if (name == "imagesurls") { localStorage.setItem("projimagesurls", value); setimagesurls(value);}
+    if (name == "name") {
+      localStorage.setItem("projname", value);
+      setname(value);
+    } else if (name == "description") {
+      localStorage.setItem("projdescription", value);
+      setdescription(value);
+    } else if (name == "ytlink") {
+      localStorage.setItem("projytlink", value);
+      setytlink(value);
+    } else if (name == "visibility") {
+      localStorage.setItem("projvisibility", value);
+      setvisibility(value);
+    } else if (name == "imagesurls") {
+      localStorage.setItem("projimagesurls", value);
+      setimagesurls(value);
+    }
   };
 
   const handleSubmit = (event) => {
@@ -140,14 +195,14 @@ export default function ProjectDetail(props) {
         Please wait...
       </button>
     );
-    var projid = localStorage.getItem("projid")
-    var description = localStorage.getItem("projdescription")
-    var name = localStorage.getItem("projname")
-    var ytlink = localStorage.getItem("projytlink")
-    var visibility = localStorage.getItem("projvisibility")
-    var imagesurls = localStorage.getItem("projimagesurls")
+    var projid = localStorage.getItem("projid");
+    var description = localStorage.getItem("projdescription");
+    var name = localStorage.getItem("projname");
+    var ytlink = localStorage.getItem("projytlink");
+    var visibility = localStorage.getItem("projvisibility");
+    var imagesurls = localStorage.getItem("projimagesurls");
     if (!description || !name || !ytlink || !imagesurls || !visibility) {
-      console.log(projid, description, name, ytlink, imagesurls, visibility)
+      console.log(projid, description, name, ytlink, imagesurls, visibility);
       setModalMsg("All fields Are Required");
     } else {
       setModalMsg("");
@@ -156,7 +211,12 @@ export default function ProjectDetail(props) {
           if (res.status !== 200) {
             setModalMsg(res.data);
             var projData = {
-              name, description, ytlink, imagesurls, visibility, id: projid
+              name,
+              description,
+              ytlink,
+              imagesurls,
+              visibility,
+              id: projid,
             };
             sampleproject = creteProjectCard(projData);
             setResponse(sampleproject);
@@ -172,13 +232,12 @@ export default function ProjectDetail(props) {
       </button>
     );
   };
-  
+
   const [modalBtton, setModalBtton] = useState(
     <button type="button" className="btn btn-primary" onClick={handleSubmit}>
       Submit
     </button>
   );
-
 
   return (
     <>
@@ -186,7 +245,9 @@ export default function ProjectDetail(props) {
       <div className="p-1">
         {loader}
         {response}
-        <div className="pt-4  text-center">{editButton}</div>
+        <div className="pt-4 text-center">
+          {editButton}&nbsp;{deleteButton}
+        </div>
         <div
           className="modal fade"
           id="exampleModal"

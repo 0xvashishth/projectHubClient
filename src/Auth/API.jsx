@@ -73,6 +73,35 @@ export const ProjectEdit = async (id, name, description, ytlink, imagesurls, vis
   return response;
 };
 
+export const ProjectDelete = async (id, owner) => {
+  var response
+  var loggedin = localStorage.getItem("id");
+  if(owner != loggedin){
+    return "you are not wowner";
+  }
+  var apiLink = "/api/Projects/"+id
+  var token = localStorage.getItem("token")
+  var tokenbearer = "bearer " + token
+  console.log(tokenbearer)
+  let axiosConfig = {
+    headers: {
+        'Content-Type': 'application/json',
+        "accept": "text/plain",
+        "Authorization": tokenbearer,
+        "Access-Control-Allow-Origin": "*",
+    }
+  };
+  await axios
+    .delete(apiLink, axiosConfig)
+    .then((res) => {
+      response = res;
+    })
+    .catch((err) => {
+      response = err.response;
+    });
+  return response;
+};
+
 export const Signin = async (email, password) => {
     var response;
     await axios

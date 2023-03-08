@@ -50,7 +50,7 @@ export default function Nav(props) {
           &nbsp;
           &nbsp;
           {
-            checkhello ? <a onClick={LogoutClick} className="btn btn-danger">Logout</a> : <a href="/login" className="btn btn-primary">Login</a>
+            checkhello ? <a onClick={LogoutClick} className="btn btn-warning">Logout</a> : <a href="/login" className="btn btn-primary">Login</a>
           }
         </div>
       </div>
