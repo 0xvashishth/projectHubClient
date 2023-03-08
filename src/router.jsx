@@ -46,7 +46,8 @@ import UserProfile from "./User/UserProfile";
       element: <CreateProject/>
     },
     {
-      errorElement: <ErrorPage />
+      path: "*",
+      element: <ErrorPage/>
     }
   ]);
   
