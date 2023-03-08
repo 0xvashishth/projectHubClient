@@ -51,14 +51,14 @@ const LoginScreen = (props) => {
                 <h2>Login Here</h2>
                 <hr/>
                 <div className='m-4'>
-                    <div class="form-group">
-                        <label htmlFor="email" class="form-label mt-4">Email address</label>
-                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" value={stateemail} onChange={handleEmailChange}/>
-                        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                    <div className="form-group">
+                        <label htmlFor="email" className="form-label mt-4">Email address</label>
+                        <input type="email" className="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" value={stateemail} onChange={handleEmailChange}/>
+                        <small id="emailHelp" className="form-text text-muted">We'll never share your email with anyone else.</small>
                     </div>
-                    <div class="form-group">
-                        <label htmlFor="password" class="form-label mt-4">Password</label>
-                        <input type="password" class="form-control" id="password" aria-describedby="emailHelp" placeholder="Enter password" value={password} onChange={handlePasswordChange} />
+                    <div className="form-group">
+                        <label htmlFor="password" className="form-label mt-4">Password</label>
+                        <input type="password" className="form-control" id="password" aria-describedby="emailHelp" placeholder="Enter password" value={password} onChange={handlePasswordChange} />
                     </div>
                 </div>
                 {loader}

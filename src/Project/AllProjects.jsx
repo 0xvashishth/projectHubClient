@@ -23,24 +23,24 @@ export default function HomePageProject(props) {
         sampleproject[i] = 
         <div className='col'>
         <a className='linknoeffect' href={hreflink}>
-        <div class='card mb-3'>
-        <h3 class="card-header">Project: {res.data[i].id}</h3>
-        <div class="card-body">
-          <h5 class="card-title">{res.data[i].name}</h5>
-          <h6 class="card-subtitle text-muted">Created By: {res.data[i].creator}</h6>
+        <div className='card mb-3'>
+        <h3 className="card-header">Project: {res.data[i].id}</h3>
+        <div className="card-body">
+          <h5 className="card-title">{res.data[i].name}</h5>
+          <h6 className="card-subtitle text-muted">Created By: {res.data[i].creator}</h6>
         </div>
         <div className="rounded mx-auto d-block p-2 border">
         <img width="100vh" src="https://user-images.githubusercontent.com/76911582/196771457-2c0b15c0-bb27-4f73-a1b6-2120f2dfbca4.png" />
         </div>
-        <div class="card-body">
+        <div className="card-body">
         {/* <ReactMarkdown children={}/> */}
         <TextTruncate line={2} text={res.data[i].description} className="card-text" />
         </div>
-        <div class="card-body">
-          <a href="#like" class="card-link">Like</a>
-          <a href="#report" class="card-link">Report</a>
+        <div className="card-body">
+          <a href="#like" className="card-link">Like</a>
+          <a href="#report" className="card-link">Report</a>
         </div>
-        <div class="card-footer text-muted">
+        <div className="card-footer text-muted">
           Likes: {res.data[i].likes}
         </div>
       </div>
@@ -60,16 +60,16 @@ export default function HomePageProject(props) {
   return (
     <>
       <Nav/>
-      <div class="p-1">
-        <div class="border p-3 mt-5" style={{ borderRadius: "18px" }}>
-          <h2 class="row pb-2">
-            <div class="pb-2 d-flex justify-content-around">
-              <h2 class="">All Projects !</h2>
+      <div className="p-1">
+        <div className="border p-3 mt-5" style={{ borderRadius: "18px" }}>
+          <h2 className="row pb-2">
+            <div className="pb-2 d-flex justify-content-around">
+              <h2 className="">All Projects !</h2>
             </div>
             <hr />
           </h2>
           {loader}
-          <div class="row row-cols-1 row-cols-md-4 row-cols-lg-4 row-cols-sm-2 g-3">
+          <div className="row row-cols-1 row-cols-md-4 row-cols-lg-4 row-cols-sm-2 g-3">
             {responses}
           </div>
         </div>

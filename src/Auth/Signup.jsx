@@ -60,8 +60,8 @@ export default function SignupScreen(props){
         <hr />
         <form encType="multipart/form-data">
           <div className="m-4">
-            <div class="form-group">
-              <label htmlFor="email" class="form-label mt-4">
+            <div className="form-group">
+              <label htmlFor="email" className="form-label mt-4">
                 Email address
               </label>
               <input
@@ -69,14 +69,14 @@ export default function SignupScreen(props){
                 name="email"
                 value={email}
                 onChange={handleChange("email")}
-                class="form-control"
+                className="form-control"
                 id="email"
                 aria-describedby="emailHelp"
                 placeholder="Enter email"
               />
             </div>
-            <div class="form-group">
-              <label htmlFor="password" class="form-label mt-4">
+            <div className="form-group">
+              <label htmlFor="password" className="form-label mt-4">
                 Password
               </label>
               <input
@@ -84,14 +84,14 @@ export default function SignupScreen(props){
                 name="password"
                 value={password}
                 onChange={handleChange("password")}
-                class="form-control"
+                className="form-control"
                 id="password"
                 aria-describedby="emailHelp"
                 placeholder="Enter password"
               />
             </div>
-            <div class="form-group">
-              <label htmlFor="name" class="form-label mt-4">
+            <div className="form-group">
+              <label htmlFor="name" className="form-label mt-4">
                 Name
               </label>
               <input
@@ -99,14 +99,14 @@ export default function SignupScreen(props){
                 name="name"
                 value={name}
                 onChange={handleChange("name")}
-                class="form-control"
+                className="form-control"
                 id="name"
                 aria-describedby="emailHelp"
                 placeholder="Enter Name"
               />
             </div>
-            <div class="form-group">
-              <label htmlFor="twitter" class="form-label mt-4">
+            <div className="form-group">
+              <label htmlFor="twitter" className="form-label mt-4">
               Twitter
               </label>
               <input
@@ -114,14 +114,14 @@ export default function SignupScreen(props){
                 name="twitter"
                 value={twitter}
                 onChange={handleChange("twitter")}
-                class="form-control"
+                className="form-control"
                 id="twitter"
                 aria-describedby="emailHelp"
                 placeholder="Enter twitter handle"
               />
             </div>
-            <div class="form-group">
-              <label htmlFor="linkedin" class="form-label mt-4">
+            <div className="form-group">
+              <label htmlFor="linkedin" className="form-label mt-4">
               Linkedin
               </label>
               <input
@@ -129,14 +129,14 @@ export default function SignupScreen(props){
                 name="linkedin"
                 value={linkedin}
                 onChange={handleChange("linkedin")}
-                class="form-control"
+                className="form-control"
                 id="linkedin"
                 aria-describedby="emailHelp"
                 placeholder="Enter linkedin handle"
               />
             </div>
-            <div class="form-group">
-              <label htmlFor="github" class="form-label mt-4">
+            <div className="form-group">
+              <label htmlFor="github" className="form-label mt-4">
               GitHub
               </label>
               <input
@@ -144,7 +144,7 @@ export default function SignupScreen(props){
                 name="github"
                 value={github}
                 onChange={handleChange("github")}
-                class="form-control"
+                className="form-control"
                 id="github"
                 aria-describedby="emailHelp"
                 placeholder="Enter github handle"

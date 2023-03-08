@@ -59,8 +59,8 @@ export default function CreateProject(props){
         <hr />
         <form encType="multipart/form-data">
           <div className="m-4">
-          <div class="form-group">
-              <label htmlFor="name" class="form-label mt-4">
+          <div className="form-group">
+              <label htmlFor="name" className="form-label mt-4">
                 Name
               </label>
               <input
@@ -68,14 +68,14 @@ export default function CreateProject(props){
                 name="name"
                 value={name}
                 onChange={handleChange("name")}
-                class="form-control"
+                className="form-control"
                 id="name"
                 aria-describedby="emailHelp"
                 placeholder="Enter Project Name"
               />
             </div>
-            <div class="form-group">
-              <label htmlFor="description" class="form-label mt-4">
+            <div className="form-group">
+              <label htmlFor="description" className="form-label mt-4">
                 Description
               </label>
               <textarea
@@ -83,14 +83,14 @@ export default function CreateProject(props){
                 name="description"
                 value={description}
                 onChange={handleChange("description")}
-                class="form-control"
+                className="form-control"
                 id="description"
                 aria-describedby="emailHelp"
                 placeholder="Enter Project Description"
               />
             </div>
-            <div class="form-group">
-              <label htmlFor="imagesurls" class="form-label mt-4">
+            <div className="form-group">
+              <label htmlFor="imagesurls" className="form-label mt-4">
                 Images Urls
               </label>
               <input
@@ -98,16 +98,16 @@ export default function CreateProject(props){
                 name="text"
                 value={imagesurls}
                 onChange={handleChange("imagesurls")}
-                class="form-control"
+                className="form-control"
                 id="imagesurls"
                 aria-describedby="emailHelp"
                 placeholder="Enter Images Urls (CDNs)"
               />
-                <small id="emailHelp" class="form-text text-muted">Provide online cdn links of imaages saperated by comma (,)</small>
+                <small id="emailHelp" className="form-text text-muted">Provide online cdn links of imaages saperated by comma (,)</small>
             </div>
             
-            <div class="form-group">
-              <label htmlFor="ytlink" class="form-label mt-4">
+            <div className="form-group">
+              <label htmlFor="ytlink" className="form-label mt-4">
               Youtube Video Link
               </label>
               <input
@@ -115,14 +115,14 @@ export default function CreateProject(props){
                 name="ytlink"
                 value={ytlink}
                 onChange={handleChange("ytlink")}
-                class="form-control"
+                className="form-control"
                 id="ytlink"
                 aria-describedby="emailHelp"
                 placeholder="Enter Youtube Project Video Link"
               />
             </div>
-            <div class="form-group">
-              <label htmlFor="visibility" class="form-label mt-4">
+            <div className="form-group">
+              <label htmlFor="visibility" className="form-label mt-4">
               Visibility
               </label>
               <select className="form-control" name="visibility" onChange={handleChange("visibility")} value={visibility}>
