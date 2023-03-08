@@ -1,6 +1,8 @@
 import {setStorageLogin,removeStorageLogin, checkUser} from "../checkStorage"
 
 export default function Nav(props) {
+  var userid = localStorage.getItem("id")
+  var profilelink = `/user/${userid}`
   var checkhello;
   if(checkUser()){
     checkhello = true;
@@ -28,9 +30,6 @@ export default function Nav(props) {
               <a className="nav-link" href="/projects">Project List</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/projects">Top Projects</a>
-            </li>
-            <li className="nav-item">
               <a className="nav-link" href="/users">Top Users</a>
             </li>
             <li className="nav-item dropdown">
@@ -40,7 +39,7 @@ export default function Nav(props) {
                 <a className="dropdown-item" href="#contact">Contact Us</a>
                 <a className="dropdown-item" href="#codeofconduct">Code Of Conduct</a>
                 <div className="dropdown-divider"></div>
-                <a className="dropdown-item" href="#creaors">Explore More</a>
+                <a className="dropdown-item" href={profilelink}>Profile Settings</a>
               </div>
             </li>
           </ul>

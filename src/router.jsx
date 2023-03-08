@@ -10,6 +10,7 @@ import TopUsers from "./User/TopUsers"
 import LoginScreen from "./Auth/Login";
 import SignupScreen from "./Auth/Signup"
 import CreateProject from "./Project/CreateProject";
+import UserProfile from "./User/UserProfile";
   
   const router = createBrowserRouter([
     {
@@ -35,6 +36,10 @@ import CreateProject from "./Project/CreateProject";
     {
       path: "/signup",
       element: <SignupScreen/>
+    },
+    {
+      path: "/user/:userid",
+      element: <UserProfile/>
     },
     {
       path: "/project/create",
