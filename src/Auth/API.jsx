@@ -118,6 +118,33 @@ export const Signin = async (email, password) => {
     return response;
   };
 
+  export const UserEdit = async (id, name, twitter, linkedin, github) => {
+    var response
+    var creator = localStorage.getItem("id");
+    var apiLink = "/api/Users/"+id
+    var token = localStorage.getItem("token")
+    var tokenbearer = "bearer " + token
+    let axiosConfig = {
+      headers: {
+          'Content-Type': 'application/json',
+          "accept": "text/plain",
+          "Authorization": tokenbearer,
+          "Access-Control-Allow-Origin": "*",
+      }
+    };
+    await axios
+      .put(apiLink, {
+        id, name, twitter, linkedin, github
+      }, axiosConfig)
+      .then((res) => {
+        response = res;
+      })
+      .catch((err) => {
+        response = err.response;
+      });
+    return response;
+};
+
 export const ForgotPassWord = async (email) => {
     var response;
     await axios
